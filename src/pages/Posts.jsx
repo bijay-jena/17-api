@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { getPosts } from "../api/posts";
+import Post from "../components/Post";
+import "../styles/posts.css";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -19,22 +21,20 @@ export default function Posts() {
       }
     }
 
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 2000);
   }, []); // Runs once on mount
 
-  if (loading) return <p>Loading posts...</p>;
+  if (loading) return <span class="loader"></span>;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       <h2>Posts</h2>
-      <ul>
-        {posts.slice(0, 5).map((post) => (
-          <li key={post.id}>
-            <strong>{post.title}</strong>
-          </li>
-        ))}
-      </ul>
+      {posts.slice(5, 20).map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </div>
   );
 }

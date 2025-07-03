@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Posts from "./components/Posts";
+import Posts from "./pages/Posts";
 
 export default function App() {
   return (
